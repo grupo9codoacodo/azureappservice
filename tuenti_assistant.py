@@ -44,32 +44,40 @@ if user_input and not st.session_state.run_active:
     thinking_placeholder.info("🤖 Pensando...")
 
     while True:
+        print ("Rntro al run_status")
         run_status = client.beta.threads.runs.retrieve(
             thread_id=st.session_state.thread_id,
             run_id=run.id
         )
-        if run_status.status in ["completed", "failed"]:
+        print ("Vuelvo del run  status")
+        print ("status: ", run_status.status)
+        if run_status.status in ["requires_action", "completed", "failed"]:
             break
         time.sleep(1)
 
+    print ("run_status", run_status)
     # Procesar tool calls si las hay
-    if run_status.status == "completed" and run_status.required_action:
-        tool_calls = run_status.required_action.get("submit_tool_outputs", {}).get("tool_calls", [])
+    if run_status.status == "requires_action" and hasattr(run_status, "required_action"):
+        tool_calls = run_status.required_action.submit_tool_outputs.tool_calls
         tool_outputs = []
-
+    
         for tool_call in tool_calls:
-            if tool_call["function"]["name"] == "get_balance":
+            if tool_call.function.name == "get_balance":
                 try:
+                    print ("Llamando al get_balance")
                     r = requests.get(mcp_endpoint, timeout=8)
                     saldo = r.json()
+                    print ("saldo:", saldo)
                 except Exception as e:
+                    print ("Hubo un Error")
                     saldo = {"error": f"Error llamando al MCP: {e}"}
 
                 tool_outputs.append({
-                    "tool_call_id": tool_call["id"],
+                    "tool_call_id": getattr(tool_call, "id", ""),
                     "output": json.dumps(saldo)
                 })
 
+        print ("Voy a hacer un submit del tool_output");
         client.beta.threads.runs.submit_tool_outputs(
             thread_id=st.session_state.thread_id,
             run_id=run.id,
@@ -81,6 +89,7 @@ if user_input and not st.session_state.run_active:
                 thread_id=st.session_state.thread_id,
                 run_id=run.id
             )
+            print ("run_check" ,run_check)
             if run_check.status == "completed":
                 break
             time.sleep(1)

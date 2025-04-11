@@ -21,10 +21,9 @@ USERTUENTI = "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJGQW91d3BiX1dCNl
 @app.get("/get_balance")
 async def get_balance():
     # Paso 1: Obtener token
-    headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-    payload = {
+    headers = ''
+    payload = ''
  
-    }
 
     async with httpx.AsyncClient(verify=False) as client:
         try:
