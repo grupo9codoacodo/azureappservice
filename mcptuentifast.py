@@ -7,7 +7,7 @@ from fastapi.responses import FileResponse, JSONResponse
 app = FastAPI()
 
 # Constantes Keycloak y API
-KEYCLOAK_HOST = "keycloak-tuenti-sso-service.apps.ocpprod.cuyorh.tcloud.ar"
+KEYCLOAK_HOST = "https://app.tuenti.com.ar/api/scale"
 TOKEN_PATH = "/auth/realms/tuenti-prod/protocol/openid-connect/token"
 CLIENT_ID = "66321050"
 CLIENT_SECRET = "626a9755e85776337f1973488c1b9ac9"
