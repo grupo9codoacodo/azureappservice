@@ -2,4 +2,3 @@ fastapi
 httpx
 uvicorn[standard]
 gunicorn
-azure-mcp
