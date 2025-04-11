@@ -1,0 +1,34 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "Consulta Saldo Tuenti",
+      "version": "1.0"
+    },
+    "paths": {
+      "/get_balance": {
+        "get": {
+          "operationId": "get_balance",
+          "summary": "Consulta saldo actual",
+          "description": "Consulta el saldo de la cuenta Tuenti",
+          "responses": {
+            "200": {
+              "description": "Saldo obtenido correctamente",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "saldo": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  

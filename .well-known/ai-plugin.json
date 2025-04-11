@@ -1,0 +1,18 @@
+{
+    "schema_version": "v1",
+    "name_for_model": "consulta_balance_tuenti",
+    "name_for_human": "Consulta de Saldo de Tuenti",
+    "description_for_model": "Permite consultar el saldo de un usuario Tuenti",
+    "description_for_human": "Consulta saldo de tu linea de Tuenti ",
+    "auth": {
+      "type": "none"
+    },
+    "api": {
+      "type": "openapi",
+      "url": "https://brazilsouth.cloudapp.azure.com/openapi.json"
+    },
+    "logo_url": "https://https://brazilsouth.cloudapp.azure.com//logo.png",
+    "contact_email": "eduardo.gwiazda@telefonica.com",
+    "legal_info_url": "https://tuenti.com.ar/terminos"
+  }
+  
