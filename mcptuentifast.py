@@ -7,10 +7,9 @@ from fastapi.responses import FileResponse, JSONResponse
 app = FastAPI()
 
 # Constantes Keycloak y API
-KEYCLOAK_HOST = "https://app.tuenti.com.ar"
+KEYCLOAK_HOST = "app.tuenti.com.ar"
 TOKEN_PATH = "/api/scale"
-CLIENT_ID = "66321050"
-CLIENT_SECRET = "626a9755e85776337f1973488c1b9ac9"
+
 
 API_HOST = "api.tuenti.com.ar"
 BALANCE_PATH = "/tuenti-fcd-balance/Balance"
@@ -24,9 +23,7 @@ async def get_balance():
     # Paso 1: Obtener token
     headers = {'Content-Type': 'application/x-www-form-urlencoded'}
     payload = {
-        'grant_type': 'client_credentials',
-        'client_id': CLIENT_ID,
-        'client_secret': CLIENT_SECRET
+ 
     }
 
     async with httpx.AsyncClient(verify=False) as client:
