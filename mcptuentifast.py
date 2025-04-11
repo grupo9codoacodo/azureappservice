@@ -21,14 +21,16 @@ USERTUENTI = "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJGQW91d3BiX1dCNl
 @app.get("/get_balance")
 async def get_balance():
     # Paso 1: Obtener token
-    headers = ''
+    headers = { 'Referer': "https://app.tuenti.com.ar/get-balance/", 
+               "Origin"  : "htps://apps.tuenti.com.ar" 
+    }
     payload = ''
  
 
     async with httpx.AsyncClient(verify=False) as client:
         try:
             response = await client.post(f"https://{KEYCLOAK_HOST}{TOKEN_PATH}",
-                                         data=payload, headers=headers, timeout=15.0)
+                                         data= '', headers=headers, timeout=15.0)
             response.raise_for_status()
             token = response.json().get("access_token")
         except Exception as e:
