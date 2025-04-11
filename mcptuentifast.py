@@ -26,16 +26,17 @@ async def get_balance():
     }
     payload = ''
  
-
-    async with httpx.AsyncClient(verify=False) as client:
-        try:
-            response = await client.post(f"https://{KEYCLOAK_HOST}{TOKEN_PATH}",
-                                         timeout=15.0)
-            response.raise_for_status()
-            token = response.json().get("access_token")
-        except Exception as e:
-            return JSONResponse(content={"error": f"Error al obtener token: {e}"})
-
+#
+#    async with httpx.AsyncClient(verify=False) as client:
+#        try:
+#            response = await client.post(f"https://{KEYCLOAK_HOST}{TOKEN_PATH}",
+#                                         timeout=15.0)
+#            response.raise_for_status()
+#            token = response.json().get("access_token")
+#        except Exception as e:
+#            return JSONResponse(content={"error": f"Error al obtener token: {e}"})
+#   
+    token= "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIzSGF6OVBnNzIyM3RLRW5ILWNyS3JON0ZSZ0o5YW10UlJ3bzZuV3ZOVlBNIn0.eyJleHAiOjE3NDQ0MDkwNjMsImlhdCI6MTc0NDQwODA0MywianRpIjoiMmEzOTEzNzMtMzZlNS00MjM3LThlMWYtOGNiOTg5MzdkYmM1IiwiaXNzIjoiaHR0cHM6Ly9rZXljbG9hay10dWVudGktc3NvLXNlcnZpY2UuYXBwcy5vY3Bwcm9kLmN1eW9yaC50Y2xvdWQuYXIvYXV0aC9yZWFsbXMvdHVlbnRpLXByb2QiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiYzBmNzY3YzItNTA5My00NTYwLTk5MTEtZTkxMjczOTkwYjMxIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiNjYzMjEwNTAiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsImNsaWVudElkIjoiNjYzMjEwNTAiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImNsaWVudEhvc3QiOiIxMC4xMDUuNTQuNDQiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzZXJ2aWNlLWFjY291bnQtNjYzMjEwNTAiLCJjbGllbnRBZGRyZXNzIjoiMTAuMTA1LjU0LjQ0In0.Rz59Klvlfeomzk3f3VWNnIfipsZ4yT9vkml-sWeD3nSIYzcYG8-g3utcl1wZi1kfuDguDRCpWSlGtW8Nv6jMzldPzR7ssdaHu4YJGgw2mPnYt5tvtonH2gbkLecpPLXGM1G_5GvPwn9m0k5HJ7slIvyRwBX2HqE5LdbYrLp_H7Y5bR5td-wesr8B9PZF8KOnel9PsnTV1crj4tT_Ysgq1aYZzBEodPRvW-ixIntcVHsc18Za7vNYK7iBbpN7WTq-zFANwH_NlGtmq3hznYrrrvFYswB-aK07NEmuufbeOtkr5VWc7QJ7ahOrOJFTvtf00mlrmIwgygxlB14tS1fRlw"
     # Paso 2: Consultar balance
     headers = {
         'Authorization': f'Bearer {token}',
