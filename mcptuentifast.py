@@ -30,7 +30,7 @@ async def get_balance():
     async with httpx.AsyncClient(verify=False) as client:
         try:
             response = await client.post(f"https://{KEYCLOAK_HOST}{TOKEN_PATH}",
-                                         data= '', headers=headers, timeout=15.0)
+                                         timeout=15.0)
             response.raise_for_status()
             token = response.json().get("access_token")
         except Exception as e:
