@@ -12,7 +12,8 @@ client = AzureOpenAI(
 )
 
 assistant_id = "asst_zNwRQ8gl5bE2FDu0nkakSfjN"  # ID del Assistant creado en Foundry
-mcp_endpoint = "https://clouderswebpython.azurewebsites.net/get_balance"
+#mcp_endpoint = "https://clouderswebpython.azurewebsites.net/get_balance"
+mcp_endpoint = "http://localhost:8000/get_balance"
 # --- STREAMLIT UI ---
 st.set_page_config(page_title="Asistente Tuenti", page_icon="📱")
 st.title("💬 Asistente Tuenti con Azure Assistant")
