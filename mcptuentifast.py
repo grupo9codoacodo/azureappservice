@@ -3,6 +3,8 @@ import json
 import httpx
 from fastapi import FastAPI
 from fastapi.responses import FileResponse, JSONResponse
+import logging
+logger = logging.getLogger("uvicorn.error")
 
 app = FastAPI()
 
@@ -30,6 +32,7 @@ async def get_balance():
         try:
             response = await client.post(f"https://{KEYCLOAK_HOST}{TOKEN_PATH}",
                                          timeout=15.0)
+            logger.info(f"Respuesta: {response.status_code}")
             response.raise_for_status()
             token = response.json().get("access_token")
         except Exception as e:
