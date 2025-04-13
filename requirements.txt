@@ -1,5 +1,3 @@
 fastapi
 httpx
-uvicorn[standard]
-gunicorn>=21.2.0
-logging
+waitress
